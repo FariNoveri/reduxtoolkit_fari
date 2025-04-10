@@ -19,7 +19,7 @@ reduxtoolkit/
 │   │   └── store.js              # Redux store setup
 │   ├── features/                 # Manual add folder
 │   │   └── counter/
-│   │       └── counterSlice.js   # Redux slice for counter logic
+│   │       └── counterslice.js   # Redux slice for counter logic
 │   ├── App.js                    # Main App component
 │   ├── App.css                   # Styling for the app
 │   ├── index.js                  # App entry point with ReactDOM and Provider
@@ -295,7 +295,7 @@ Pastikan file ini diimpor dengan benar:
 
 ✨ Counter Logic (Redux Slice)
 ```bash
-src/features/counter/counterSlice.js
+src/features/counter/counterslice.js
 import { createSlice } from '@reduxjs/toolkit'
 
 export const counterSlice = createSlice({
