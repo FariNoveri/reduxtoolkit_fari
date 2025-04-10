@@ -57,11 +57,162 @@ src/
 ├── features/
 ```
 
-4. Jalankan Project
+## ✍️ Lanjut Manual Menambahkan Manual Codingan, Folder & Edit Summary
+
+Berikut ini adalah daftar lengkap **file dan folder yang kamu tambahkan atau edit secara manual** selama proses pengembangan proyek ini. Setiap file dilengkapi dengan **penjelasan dan potongan kode penting** yang kamu buat atau ubah sendiri.
+
+---
+
+### 1. 📁 `src/app/store.js` ✅ **(Manual Add)**  
+File ini digunakan untuk konfigurasi Redux store dan menggabungkan semua reducer.
+
+```bash
+// src/app/store.js
+import { configureStore } from '@reduxjs/toolkit'
+import counterReducer from '../features/counter/counterSlice'
+
+export const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+  },
+})
+```
+
+---
+
+### 2. 📁 `src/features/counter/counterSlice.js` ✅ **(Manual Add)**  
+File ini mendefinisikan `createSlice()` untuk counter, dengan reducer dan actions.
+
+```bash
+// src/features/counter/counterSlice.js
+import { createSlice } from '@reduxjs/toolkit'
+
+export const counterSlice = createSlice({
+  name: 'counter',
+  initialState: { value: 0 },
+  reducers: {
+    increment: (state) => { state.value += 1 },
+    decrement: (state) => { state.value -= 1 },
+    incrementByAmount: (state, action) => {
+      state.value += action.payload
+    },
+  },
+})
+
+export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const selectCount = (state) => state.counter.value
+export default counterSlice.reducer
+```
+
+---
+
+### 3. 📄 `src/index.js` ✅ **(Manual Edit)**  
+Kamu mengedit file ini untuk menyambungkan Redux ke React menggunakan `<Provider>`.
+
+```bash
+// src/index.js
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { Provider } from 'react-redux'
+import App from './App'
+import store from './app/store'
+import reportWebVitals from './reportWebVitals'
+import './index.css'
+
+const root = createRoot(document.getElementById('root'))
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+)
+
+reportWebVitals()
+```
+
+---
+
+### 4. 📄 `src/App.js` ✅ **(Manual Edit)**  
+Kamu edit `App.js` untuk menampilkan UI counter dan menyambungkan dengan Redux menggunakan `useSelector()` dan `useDispatch()`.
+
+```bash
+// src/App.js
+import React from 'react'
+import './App.css'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+  selectCount,
+} from './features/counter/counterSlice'
+
+function App() {
+  const count = useSelector(selectCount)
+  const dispatch = useDispatch()
+
+  return (
+    <div className="App">
+      <h1>Redux Counter App</h1>
+      <p className="count">{count}</p>
+      <div className="buttons">
+        <button onClick={() => dispatch(decrement())}>-</button>
+        <button onClick={() => dispatch(increment())}>+</button>
+        <button onClick={() => dispatch(incrementByAmount(5))}>+5</button>
+      </div>
+    </div>
+  )
+}
+
+export default App
+```
+
+---
+
+### 5. 📄 `src/App.css` ✅ **(Manual Edit)**  
+Kamu menambahkan styling agar UI lebih menarik.
+
+```bash
+/* src/App.css */
+.App {
+  text-align: center;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.count {
+  font-size: 4rem;
+  margin: 1rem 0;
+}
+
+.buttons button {
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #6200ee;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.buttons button:hover {
+  background-color: #3700b3;
+}
+```
+
+
+6. Jalankan Project
 ```bash
 npm start
 ```
-Jika muncul halaman "Edit src/App.js and save to reload", buka "src/app.js" kamu lalu copy dan paste kode dibawah ke dalam "src/app.js" kamu 
+
+
+7. Jika muncul halaman "Edit src/App.js and save to reload", buka "src/app.js" kamu lalu copy dan paste kode dibawah ke dalam "src/app.js" kamu 
 ```bash
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
