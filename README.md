@@ -10,7 +10,7 @@ A learning project to build a counter app using **React** and **Redux Toolkit**,
 ---
 
 ## 📁 Project Structure
-
+```bash
 reduxtoolkit/
 ├── node_modules/                 # Dependency packages (auto-generated)
 ├── public/                      # Static public assets
@@ -28,7 +28,7 @@ reduxtoolkit/
 ├── package.json                 # Project metadata and dependencies
 ├── README.md                    # Project documentation
 └── yarn.lock / package-lock.json# Dependency lock file
-
+```
 
 
 ---
