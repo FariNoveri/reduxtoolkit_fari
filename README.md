@@ -76,10 +76,11 @@ import { createRoot } from 'react-dom/client'
 
 const root = createRoot(document.getElementById('root'))
 root.render(<App />)
+```
 ❌ Error: 'reportWebVitals' is not defined
 ✅ Solusi:
 Pastikan file ini diimpor dengan benar:
-```
+
 
 > ⚠️ **Warning:** `'createRoot' is defined but never used`  
 > Pastikan kamu sudah menggunakan `createRoot(...)` untuk merender aplikasimu.
