@@ -13,21 +13,21 @@ A learning project to build a counter app using **React** and **Redux Toolkit**,
 ```bash
 reduxtoolkit/
 ├── node_modules/                 # Dependency packages (auto-generated)
-├── public/                      # Static public assets
+├── public/                       # Static public assets
 ├── src/
-│   ├── app/
-│   │   └── store.js             # Redux store setup
-│   ├── features/
+│   ├── app/                      # Manual add folder
+│   │   └── store.js              # Redux store setup
+│   ├── features/                 # Manual add folder
 │   │   └── counter/
-│   │       └── counterSlice.js  # Redux slice for counter logic
-│   ├── App.js                   # Main App component
-│   ├── App.css                  # Styling for the app
-│   ├── index.js                 # App entry point with ReactDOM and Provider
-│   └── reportWebVitals.js       # Web performance reporting (optional)
-├── .gitignore                   # Git ignored files
-├── package.json                 # Project metadata and dependencies
-├── README.md                    # Project documentation
-└── yarn.lock / package-lock.json# Dependency lock file
+│   │       └── counterSlice.js   # Redux slice for counter logic
+│   ├── App.js                    # Main App component
+│   ├── App.css                   # Styling for the app
+│   ├── index.js                  # App entry point with ReactDOM and Provider
+│   └── reportWebVitals.js        # Web performance reporting (optional)
+├── .gitignore                    # Git ignored files
+├── package.json                  # Project metadata and dependencies
+├── README.md                     # Project documentation
+└── yarn.lock / package-lock.json # Dependency lock file
 ```
 
 
