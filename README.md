@@ -1,70 +1,174 @@
-# Getting Started with Create React App
+# 🚀 Redux Counter App with React & Redux Toolkit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A learning project to build a counter app using **React** and **Redux Toolkit**, including real setup experience, errors, and how to solve them.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🧑‍💻 Made by Fari Noveri  
+📅 Release Date: 10 April 2025  
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📁 Project Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+reduxtoolkit/
+├── node_modules/                 # Dependency packages (auto-generated)
+├── public/                      # Static public assets
+├── src/
+│   ├── app/
+│   │   └── store.js             # Redux store setup
+│   ├── features/
+│   │   └── counter/
+│   │       └── counterSlice.js  # Redux slice for counter logic
+│   ├── App.js                   # Main App component
+│   ├── App.css                  # Styling for the app
+│   ├── index.js                 # App entry point with ReactDOM and Provider
+│   └── reportWebVitals.js       # Web performance reporting (optional)
+├── .gitignore                   # Git ignored files
+├── package.json                 # Project metadata and dependencies
+├── README.md                    # Project documentation
+└── yarn.lock / package-lock.json# Dependency lock file
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔧 Setup React + Redux
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. Inisialisasi Project React
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npx create-react-app reduxtoolkit
+cd reduxtoolkit
+```
+Jika hanya muncul node_modules dan package.json setelah setup, itu normal. Lanjut ke langkah berikutnya.
 
-### `npm run eject`
+2. Install Redux Toolkit dan React-Redux
+```bash
+npm install @reduxjs/toolkit react-redux
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Buat Folder Manual (Jika Belum Ada)
+Jika folder src/app/ tidak ada, buat manual:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+css
+src/
+├── app/
+├── features/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Jalankan Project
+```bash
+npm start
+```
+Jika muncul halaman "Edit src/App.js and save to reload", artinya React berhasil jalan! 🎉
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+🐞 Beberapa Error & Solusi
+❌ Error: 'ReactDOM' is not defined
+```bash
+Line 8:14:  'ReactDOM' is not defined         no-undef
+```
+✅ Solusi:
+Pastikan kamu sudah mengimpor createRoot dan gunakan ini:
 
-## Learn More
+```bash
+import { createRoot } from 'react-dom/client'
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const root = createRoot(document.getElementById('root'))
+root.render(<App />)
+❌ Error: 'reportWebVitals' is not defined
+✅ Solusi:
+Pastikan file ini diimpor dengan benar:
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> ⚠️ **Warning:** `'createRoot' is defined but never used`  
+> Pastikan kamu sudah menggunakan `createRoot(...)` untuk merender aplikasimu.
 
-### Code Splitting
+✨ Counter Logic (Redux Slice)
+```bash
+src/features/counter/counterSlice.js
+import { createSlice } from '@reduxjs/toolkit'
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+export const counterSlice = createSlice({
+  name: 'counter',
+  initialState: { value: 0 },
+  reducers: {
+    increment: (state) => { state.value += 1 },
+    decrement: (state) => { state.value -= 1 },
+    incrementByAmount: (state, action) => {
+      state.value += action.payload
+    },
+  },
+})
 
-### Analyzing the Bundle Size
+export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const selectCount = (state) => state.counter.value
+export default counterSlice.reducer
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+🎨 Styling (CSS)
+Tambahkan styling ke App.css agar tampilan lebih menarik:
+```bash
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
 
-### Making a Progressive Web App
+.counter-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+.counter-container button {
+  margin: 0.5rem;
+  padding: 10px 20px;
+  font-size: 18px;
+}
+```
 
-### Advanced Configuration
+☁️ Push ke GitHub
+Inisialisasi git:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
 
-### Deployment
+Tambahkan remote dan push:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+git remote add origin https://github.com/yourusername/redux-counter.git
+```
+```bash
+git branch -M main
+```
+```bash
+git push -u origin main
+```
 
-### `npm run build` fails to minify
+Kalau git init sudah pernah dilakukan, dan kamu ingin mengulang dari awal:
+```bash
+# Batalkan git
+Remove-Item -Recurse -Force .git    # PowerShell
+rm -rf .git                         # Git Bash
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+▄▄▄█████▓ ██░ ██  ▄▄▄       ███▄    █  ██ ▄█▀   ▓██   ██▓ ▒█████   █    ██ 
+▓  ██▒ ▓▒▓██░ ██▒▒████▄     ██ ▀█   █  ██▄█▒     ▒██  ██▒▒██▒  ██▒ ██  ▓██▒
+▒ ▓██░ ▒░▒██▀▀██░▒██  ▀█▄  ▓██  ▀█ ██▒▓███▄░      ▒██ ██░▒██░  ██▒▓██  ▒██░
+░ ▓██▓ ░ ░▓█ ░██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒▓██ █▄      ░ ▐██▓░▒██   ██░▓▓█  ░██░
+  ▒██▒ ░ ░▓█▒░██▓ ▓█   ▓██▒▒██░   ▓██░▒██▒ █▄     ░ ██▒▓░░ ████▓▒░▒▒█████▓ 
+  ▒ ░░    ▒ ░░▒░▒ ▒▒   ▓▒█░░ ▒░   ▒ ▒ ▒ ▒▒ ▓▒      ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒ 
+    ░     ▒ ░▒░ ░  ▒   ▒▒ ░░ ░░   ░ ▒░░ ░▒ ▒░    ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░ 
+  ░       ░  ░░ ░  ░   ▒      ░   ░ ░ ░ ░░ ░     ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░ 
+          ░  ░  ░      ░  ░         ░ ░  ░       ░ ░         ░ ░     ░     
+                                                 ░ ░                       
+
