@@ -55,6 +55,7 @@ css
 src/
 ├── app/
 ├── features/
+│   │   └── counter/
 ```
 ---
 
