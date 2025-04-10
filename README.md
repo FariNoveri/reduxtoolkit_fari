@@ -118,6 +118,7 @@ export default App
 ```
 Maka dengan itu React berhasil jalan! 🎉
 
+
 🐞 Beberapa Error & Solusi
 ❌ Error: 'ReactDOM' is not defined
 ```bash
